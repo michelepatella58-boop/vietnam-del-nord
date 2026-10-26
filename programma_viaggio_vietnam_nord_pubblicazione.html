@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_87c003a381fe8b97e5a075d8d42abce0 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="position:fixed;bottom:22px;left:22px;z-index:9999;background:white;border:1px solid #888;border-radius:7px;padding:10px 12px;font:13px Arial;box-shadow:0 1px 5px #999;max-width:290px">
+<b>Legenda</b><br>
+<span style="color:#1769aa;font-weight:bold">━━</span> Percorso stradale indicativo dai punti GPX<br>
+<span style="color:#d62728;font-weight:bold">┄ ┄</span> Trasferimento in treno Hanoi → Lào Cai (linea retta, non stradale)<br>
+<span style="font-size:11px;color:#555">I punti intermedi senza nome sono mantenuti nella linea ma non mostrati come segnaposto.</span>
+</div>
+    
+            <div class="folium-map" id="map_87c003a381fe8b97e5a075d8d42abce0" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_87c003a381fe8b97e5a075d8d42abce0 = L.map(
+                "map_87c003a381fe8b97e5a075d8d42abce0",
+                {
+                    center: [22.41369490322581, 105.43727606451613],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 7,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+
+            
+
+        
+    
+            var tile_layer_e0c7dccdcf2d730e0b46ecc1ce39479f = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_e0c7dccdcf2d730e0b46ecc1ce39479f.addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            var poly_line_0b3a5c2f0d8958a0485865439188a47b = L.polyline(
+                [[21.006119, 105.831748], [22.492232, 103.946254]],
+                {"bubblingMouseEvents": true, "color": "#d62728", "dashArray": "10, 9", "dashOffset": null, "fill": false, "fillColor": "#d62728", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.95, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            poly_line_0b3a5c2f0d8958a0485865439188a47b.bindTooltip(
+                `<div>
+                     TRASFERIMENTO IN TRENO · linea retta, non stradale
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_8c9c21f45b42b8390c109f00be668270 = L.marker(
+                [21.7491755, 104.88900100000001],
+                {
+}
+            ).addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            var div_icon_33e7b39d222c66b9534e48d9c320a8f9 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:12px;font-weight:bold;color:#b51f24;background:#fff;padding:4px 7px;border:1px solid #b51f24;border-radius:5px;white-space:nowrap;\"\u003e\ud83d\ude86 TRASFERIMENTO IN TRENO\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+            marker_8c9c21f45b42b8390c109f00be668270.bindTooltip(
+                `<div>
+                     Hanoi → stazione di Lào Cai: trasferimento ferroviario
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8c9c21f45b42b8390c109f00be668270.setIcon(div_icon_33e7b39d222c66b9534e48d9c320a8f9);
+            
+    
+            var poly_line_7ffb81b1746459ec0744a9c6da3d3aeb = L.polyline(
+                [[22.492232, 103.946254], [22.335446, 103.841058], [22.537291, 104.291745], [22.484981, 104.363811], [22.485036, 104.389105], [22.827766, 104.983913], [23.117563, 105.143492], [23.278002, 105.362763], [23.242046, 105.400183], [23.101126, 105.42163], [22.954145, 105.681266], [22.9234602, 105.7784865], [22.667846, 106.239449], [22.841973, 106.646764], [22.850996, 106.728054], [22.846443, 106.705576], [22.844213, 106.653713], [22.687622, 106.440116], [22.664242, 106.071281], [22.484499, 105.664831], [22.451833, 105.61419], [22.131762, 105.27254], [22.057602, 105.225461], [21.942117, 105.224438], [21.855699, 105.188377], [21.800046, 105.165775], [21.748138, 105.031205], [21.821993, 105.003128], [21.31014, 105.400884], [21.029254, 105.839629]],
+                {"bubblingMouseEvents": true, "color": "#1769aa", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#1769aa", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            poly_line_7ffb81b1746459ec0744a9c6da3d3aeb.bindTooltip(
+                `<div>
+                     Itinerario stradale indicativo secondo i punti del GPX
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_70feae378084f9bb85dd6c4e0632daf3 = L.marker(
+                [21.006119, 105.831748],
+                {
+}
+            ).addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            var icon_a72bd505d1fe139116974ef7306838f6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_845c5c76bc9b26df56598e679af604c8 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_3f44c2b22831a72f137c25eedce55aec = $(`<div id="html_3f44c2b22831a72f137c25eedce55aec" style="width: 100.0%; height: 100.0%;"><div style='width:270px;font-family:Arial,sans-serif'><h3 style='margin:0 0 6px'>1 · Hanoi</h3><img src='https://quocphongthudo.com.vn/upload/2001606/20241007/21222_2043a.jpg' alt='Hanoi' style='width:100%;max-height:150px;object-fit:cover;border-radius:6px;margin:4px 0 6px' onerror="this.style.display='none'"><p style='font-size:11px;color:#666;margin:0 0 6px'>Foto: Quoc Phong Thu Do</p><p style='margin:0 0 8px'>Capitale del Vietnam: passeggiata nel Quartiere Vecchio e intorno al lago Hoàn Kiếm; tra le visite possibili anche il Tempio della Letteratura e il complesso di Ho Chi Minh.</p><a href='https://www.google.com/maps/search/?api=1&amp;query=Hoan+Kiem+Lake+Hanoi+Vietnam' target='_blank' rel='noopener'>Apri indicazioni in Google Maps</a></div></div>`)[0];
+                popup_845c5c76bc9b26df56598e679af604c8.setContent(html_3f44c2b22831a72f137c25eedce55aec);
+            
+        
+
+        marker_70feae378084f9bb85dd6c4e0632daf3.bindPopup(popup_845c5c76bc9b26df56598e679af604c8)
+        ;
+
+        
+    
+    
+            marker_70feae378084f9bb85dd6c4e0632daf3.bindTooltip(
+                `<div>
+                     1 · Hanoi
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_70feae378084f9bb85dd6c4e0632daf3.setIcon(icon_a72bd505d1fe139116974ef7306838f6);
+            
+    
+            var marker_32357daa0f323f6c9635e63e288d011d = L.marker(
+                [22.492232, 103.946254],
+                {
+}
+            ).addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            var icon_0ad841cab9d7bed6e8687aec4aaa7491 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e32c3281b718267f041a0d62a65764c0 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_ee51da55a539f50cbba205b57cb2fca8 = $(`<div id="html_ee51da55a539f50cbba205b57cb2fca8" style="width: 100.0%; height: 100.0%;"><div style='width:270px;font-family:Arial,sans-serif'><h3 style='margin:0 0 6px'>2 · Stazione di Lào Cai</h3><p>Coordinate GPX: 22.492232, 103.946254</p><a href='https://www.google.com/maps/search/?api=1&query=22.492232,103.946254' target='_blank' rel='noopener'>Apri posizione in Google Maps</a></div></div>`)[0];
+                popup_e32c3281b718267f041a0d62a65764c0.setContent(html_ee51da55a539f50cbba205b57cb2fca8);
+            
+        
+
+        marker_32357daa0f323f6c9635e63e288d011d.bindPopup(popup_e32c3281b718267f041a0d62a65764c0)
+        ;
+
+        
+    
+    
+            marker_32357daa0f323f6c9635e63e288d011d.bindTooltip(
+                `<div>
+                     2 · Stazione di Lào Cai
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_32357daa0f323f6c9635e63e288d011d.setIcon(icon_0ad841cab9d7bed6e8687aec4aaa7491);
+            
+    
+            var marker_a7e2f5b9338765c60ed77c790265a339 = L.marker(
+                [22.335446, 103.841058],
+                {
+}
+            ).addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            var icon_0aec397339bd4602381af1c849e948d7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3a031bb106e4c92aac41f6712912c67e = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_d94fc7d43980ddfebbcbc58be5503705 = $(`<div id="html_d94fc7d43980ddfebbcbc58be5503705" style="width: 100.0%; height: 100.0%;"><div style='width:270px;font-family:Arial,sans-serif'><h3 style='margin:0 0 6px'>3 · Sa Pa</h3><p>Coordinate GPX: 22.335446, 103.841058</p><a href='https://www.google.com/maps/search/?api=1&query=22.335446,103.841058' target='_blank' rel='noopener'>Apri posizione in Google Maps</a></div></div>`)[0];
+                popup_3a031bb106e4c92aac41f6712912c67e.setContent(html_d94fc7d43980ddfebbcbc58be5503705);
+            
+        
+
+        marker_a7e2f5b9338765c60ed77c790265a339.bindPopup(popup_3a031bb106e4c92aac41f6712912c67e)
+        ;
+
+        
+    
+    
+            marker_a7e2f5b9338765c60ed77c790265a339.bindTooltip(
+                `<div>
+                     3 · Sa Pa
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a7e2f5b9338765c60ed77c790265a339.setIcon(icon_0aec397339bd4602381af1c849e948d7);
+            
+    
+            var marker_2666f15d52ee9a7cdd3fe729cbba47f7 = L.marker(
+                [22.537291, 104.291745],
+                {
+}
+            ).addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            var icon_b2102911a5969dc23dc2da73d1af14f1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ae42b1db09ffd75ff150e8604d070324 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_c76476d43478300eb4a89ddb12e25a15 = $(`<div id="html_c76476d43478300eb4a89ddb12e25a15" style="width: 100.0%; height: 100.0%;"><div style='width:270px;font-family:Arial,sans-serif'><h3 style='margin:0 0 6px'>4 · Bắc Hà</h3><p>Coordinate GPX: 22.537291, 104.291745</p><a href='https://www.google.com/maps/search/?api=1&query=22.537291,104.291745' target='_blank' rel='noopener'>Apri posizione in Google Maps</a></div></div>`)[0];
+                popup_ae42b1db09ffd75ff150e8604d070324.setContent(html_c76476d43478300eb4a89ddb12e25a15);
+            
+        
+
+        marker_2666f15d52ee9a7cdd3fe729cbba47f7.bindPopup(popup_ae42b1db09ffd75ff150e8604d070324)
+        ;
+
+        
+    
+    
+            marker_2666f15d52ee9a7cdd3fe729cbba47f7.bindTooltip(
+                `<div>
+                     4 · Bắc Hà
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2666f15d52ee9a7cdd3fe729cbba47f7.setIcon(icon_b2102911a5969dc23dc2da73d1af14f1);
+            
+    
+            var marker_b915eead9155252b68c24b15d68663aa = L.marker(
+                [22.827766, 104.983913],
+                {
+}
+            ).addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            var icon_4dbe895a4c5843182a5df634b37daf3b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b8ba1118f3c27db1417c4ba2ff20c0c8 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_4f597a8193192747b0102f21a370b857 = $(`<div id="html_4f597a8193192747b0102f21a370b857" style="width: 100.0%; height: 100.0%;"><div style='width:270px;font-family:Arial,sans-serif'><h3 style='margin:0 0 6px'>7 · Hà Giang</h3><img src='https://autourasia.com/uploads/Travel-Guide-Vietnam/ha-giang/a-must-see-the-buckwheat-flower-festival/700-ha-giang-province-viet-nam.jpg' alt='Hà Giang' style='width:100%;max-height:150px;object-fit:cover;border-radius:6px;margin:4px 0 6px' onerror="this.style.display='none'"><p style='font-size:11px;color:#666;margin:0 0 6px'>Foto: Autour Asia</p><p style='margin:0 0 8px'>Porta d&#x27;accesso ai paesaggi carsici del nord. Punto di partenza per la QL.4C verso Yên Minh e Đồng Văn; controllare carburante e condizioni meteo prima delle strade di montagna.</p><a href='https://www.google.com/maps/dir/?api=1&amp;destination=Ha+Giang+Vietnam' target='_blank' rel='noopener'>Apri indicazioni in Google Maps</a></div></div>`)[0];
+                popup_b8ba1118f3c27db1417c4ba2ff20c0c8.setContent(html_4f597a8193192747b0102f21a370b857);
+            
+        
+
+        marker_b915eead9155252b68c24b15d68663aa.bindPopup(popup_b8ba1118f3c27db1417c4ba2ff20c0c8)
+        ;
+
+        
+    
+    
+            marker_b915eead9155252b68c24b15d68663aa.bindTooltip(
+                `<div>
+                     7 · Hà Giang
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b915eead9155252b68c24b15d68663aa.setIcon(icon_4dbe895a4c5843182a5df634b37daf3b);
+            
+    
+            var marker_886dda84f85af2480fb371d6ddaff1f2 = L.marker(
+                [23.117563, 105.143492],
+                {
+}
+            ).addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            var icon_1f17295f149f637485d4cbf732d20d2e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4da24e626249fc8bbbc934e30e4b78ba = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_f667a87662da841e330d7e2b224bc756 = $(`<div id="html_f667a87662da841e330d7e2b224bc756" style="width: 100.0%; height: 100.0%;"><div style='width:270px;font-family:Arial,sans-serif'><h3 style='margin:0 0 6px'>Yên Minh</h3><p>Coordinate GPX: 23.117563, 105.143492</p><a href='https://www.google.com/maps/search/?api=1&query=23.117563,105.143492' target='_blank' rel='noopener'>Apri posizione in Google Maps</a></div></div>`)[0];
+                popup_4da24e626249fc8bbbc934e30e4b78ba.setContent(html_f667a87662da841e330d7e2b224bc756);
+            
+        
+
+        marker_886dda84f85af2480fb371d6ddaff1f2.bindPopup(popup_4da24e626249fc8bbbc934e30e4b78ba)
+        ;
+
+        
+    
+    
+            marker_886dda84f85af2480fb371d6ddaff1f2.bindTooltip(
+                `<div>
+                     Yên Minh
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_886dda84f85af2480fb371d6ddaff1f2.setIcon(icon_1f17295f149f637485d4cbf732d20d2e);
+            
+    
+            var marker_b3a378b3572c70597e328fb60da344ab = L.marker(
+                [23.278002, 105.362763],
+                {
+}
+            ).addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            var icon_8296a54ab523e048faabb9a8747bddd4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5ffe401eabc41ba77eda8a0dcbc7eb9e = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_74f5afa0faaad893aad29bbbe138338d = $(`<div id="html_74f5afa0faaad893aad29bbbe138338d" style="width: 100.0%; height: 100.0%;"><div style='width:270px;font-family:Arial,sans-serif'><h3 style='margin:0 0 6px'>Đồng Văn · sosta</h3><p>Coordinate GPX: 23.278002, 105.362763</p><a href='https://www.google.com/maps/search/?api=1&query=23.278002,105.362763' target='_blank' rel='noopener'>Apri posizione in Google Maps</a></div></div>`)[0];
+                popup_5ffe401eabc41ba77eda8a0dcbc7eb9e.setContent(html_74f5afa0faaad893aad29bbbe138338d);
+            
+        
+
+        marker_b3a378b3572c70597e328fb60da344ab.bindPopup(popup_5ffe401eabc41ba77eda8a0dcbc7eb9e)
+        ;
+
+        
+    
+    
+            marker_b3a378b3572c70597e328fb60da344ab.bindTooltip(
+                `<div>
+                     Đồng Văn · sosta
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b3a378b3572c70597e328fb60da344ab.setIcon(icon_8296a54ab523e048faabb9a8747bddd4);
+            
+    
+            var marker_ff133314233f184b0620ceffebe400d6 = L.marker(
+                [23.242046, 105.400183],
+                {
+}
+            ).addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            var icon_c3977577d07c1023e7f6a6c8fe708dae = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_976f392a9dc4dd3fe6a135f28f849c07 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_598cf1c1ac31eec1bdd92afd3198aada = $(`<div id="html_598cf1c1ac31eec1bdd92afd3198aada" style="width: 100.0%; height: 100.0%;"><div style='width:270px;font-family:Arial,sans-serif'><h3 style='margin:0 0 6px'>Passo Ma Pi Leng</h3><p>Coordinate GPX: 23.242046, 105.400183</p><a href='https://www.google.com/maps/search/?api=1&query=23.242046,105.400183' target='_blank' rel='noopener'>Apri posizione in Google Maps</a></div></div>`)[0];
+                popup_976f392a9dc4dd3fe6a135f28f849c07.setContent(html_598cf1c1ac31eec1bdd92afd3198aada);
+            
+        
+
+        marker_ff133314233f184b0620ceffebe400d6.bindPopup(popup_976f392a9dc4dd3fe6a135f28f849c07)
+        ;
+
+        
+    
+    
+            marker_ff133314233f184b0620ceffebe400d6.bindTooltip(
+                `<div>
+                     Passo Ma Pi Leng
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ff133314233f184b0620ceffebe400d6.setIcon(icon_c3977577d07c1023e7f6a6c8fe708dae);
+            
+    
+            var marker_eabcf1a1a4306d9f82a3fcdde5bdb3fb = L.marker(
+                [22.954145, 105.681266],
+                {
+}
+            ).addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            var icon_eb1c4bce9628dfc1d98774625f8bc5a2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2f2470474cdf55003dfa49d90c8998d3 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_2f07558eb2f8b00971ea7860aaec53e4 = $(`<div id="html_2f07558eb2f8b00971ea7860aaec53e4" style="width: 100.0%; height: 100.0%;"><div style='width:270px;font-family:Arial,sans-serif'><h3 style='margin:0 0 6px'>Bảo Lạc</h3><p>Coordinate GPX: 22.954145, 105.681266</p><a href='https://www.google.com/maps/search/?api=1&query=22.954145,105.681266' target='_blank' rel='noopener'>Apri posizione in Google Maps</a></div></div>`)[0];
+                popup_2f2470474cdf55003dfa49d90c8998d3.setContent(html_2f07558eb2f8b00971ea7860aaec53e4);
+            
+        
+
+        marker_eabcf1a1a4306d9f82a3fcdde5bdb3fb.bindPopup(popup_2f2470474cdf55003dfa49d90c8998d3)
+        ;
+
+        
+    
+    
+            marker_eabcf1a1a4306d9f82a3fcdde5bdb3fb.bindTooltip(
+                `<div>
+                     Bảo Lạc
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_eabcf1a1a4306d9f82a3fcdde5bdb3fb.setIcon(icon_eb1c4bce9628dfc1d98774625f8bc5a2);
+            
+    
+            var marker_ae8f3774a957a5642cf65e731279b542 = L.marker(
+                [22.9234602, 105.7784865],
+                {
+}
+            ).addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            var icon_6d8aa0645502d615f9a9ae1c8f67b973 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8cb7ea4868ae3244974c1990f2f15ba0 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_471731c41d8655dc6cc3e67d65c93230 = $(`<div id="html_471731c41d8655dc6cc3e67d65c93230" style="width: 100.0%; height: 100.0%;"><div style='width:270px;font-family:Arial,sans-serif'><h3 style='margin:0 0 6px'>Passo Khau Coc Cha</h3><p>Coordinate GPX: 22.9234602, 105.7784865</p><a href='https://www.google.com/maps/search/?api=1&query=22.9234602,105.7784865' target='_blank' rel='noopener'>Apri posizione in Google Maps</a></div></div>`)[0];
+                popup_8cb7ea4868ae3244974c1990f2f15ba0.setContent(html_471731c41d8655dc6cc3e67d65c93230);
+            
+        
+
+        marker_ae8f3774a957a5642cf65e731279b542.bindPopup(popup_8cb7ea4868ae3244974c1990f2f15ba0)
+        ;
+
+        
+    
+    
+            marker_ae8f3774a957a5642cf65e731279b542.bindTooltip(
+                `<div>
+                     Passo Khau Coc Cha
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ae8f3774a957a5642cf65e731279b542.setIcon(icon_6d8aa0645502d615f9a9ae1c8f67b973);
+            
+    
+            var marker_92e42d17ed97a76b0ced5bd785d5373e = L.marker(
+                [22.667846, 106.239449],
+                {
+}
+            ).addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            var icon_82c276f338c28ce13eb48c5870d4c59d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c5daed23f1c4690f33a5e2076105102b = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_a2add67fb70b8b74386abc31382eba50 = $(`<div id="html_a2add67fb70b8b74386abc31382eba50" style="width: 100.0%; height: 100.0%;"><div style='width:270px;font-family:Arial,sans-serif'><h3 style='margin:0 0 6px'>Cao Bằng</h3><p>Coordinate GPX: 22.667846, 106.239449</p><a href='https://www.google.com/maps/search/?api=1&query=22.667846,106.239449' target='_blank' rel='noopener'>Apri posizione in Google Maps</a></div></div>`)[0];
+                popup_c5daed23f1c4690f33a5e2076105102b.setContent(html_a2add67fb70b8b74386abc31382eba50);
+            
+        
+
+        marker_92e42d17ed97a76b0ced5bd785d5373e.bindPopup(popup_c5daed23f1c4690f33a5e2076105102b)
+        ;
+
+        
+    
+    
+            marker_92e42d17ed97a76b0ced5bd785d5373e.bindTooltip(
+                `<div>
+                     Cao Bằng
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_92e42d17ed97a76b0ced5bd785d5373e.setIcon(icon_82c276f338c28ce13eb48c5870d4c59d);
+            
+    
+            var marker_56411fba259584c54fec4b496b9d0719 = L.marker(
+                [22.850996, 106.728054],
+                {
+}
+            ).addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            var icon_3ce9ef8520959fb76cfeb76294d08944 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9fa5c436e9481e3e0092a10734278b37 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_7b30f1679b7bfab347186a1dda59b4db = $(`<div id="html_7b30f1679b7bfab347186a1dda59b4db" style="width: 100.0%; height: 100.0%;"><div style='width:270px;font-family:Arial,sans-serif'><h3 style='margin:0 0 6px'>Cascate di Bản Giốc</h3><p>Coordinate GPX: 22.850996, 106.728054</p><a href='https://www.google.com/maps/search/?api=1&query=22.850996,106.728054' target='_blank' rel='noopener'>Apri posizione in Google Maps</a></div></div>`)[0];
+                popup_9fa5c436e9481e3e0092a10734278b37.setContent(html_7b30f1679b7bfab347186a1dda59b4db);
+            
+        
+
+        marker_56411fba259584c54fec4b496b9d0719.bindPopup(popup_9fa5c436e9481e3e0092a10734278b37)
+        ;
+
+        
+    
+    
+            marker_56411fba259584c54fec4b496b9d0719.bindTooltip(
+                `<div>
+                     Cascate di Bản Giốc
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_56411fba259584c54fec4b496b9d0719.setIcon(icon_3ce9ef8520959fb76cfeb76294d08944);
+            
+    
+            var marker_7f400ae92b6a71ae4cd9464795033198 = L.marker(
+                [22.846443, 106.705576],
+                {
+}
+            ).addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            var icon_8a0d3c2f767572c8790c64eb3e094d25 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b1d22e3d9fd30a39696e004a4845da4e = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_8a44ff740267dc3f92d8489acc20aa67 = $(`<div id="html_8a44ff740267dc3f92d8489acc20aa67" style="width: 100.0%; height: 100.0%;"><div style='width:270px;font-family:Arial,sans-serif'><h3 style='margin:0 0 6px'>Grotta di Ngườm Ngao</h3><p>Coordinate GPX: 22.846443, 106.705576</p><a href='https://www.google.com/maps/search/?api=1&query=22.846443,106.705576' target='_blank' rel='noopener'>Apri posizione in Google Maps</a></div></div>`)[0];
+                popup_b1d22e3d9fd30a39696e004a4845da4e.setContent(html_8a44ff740267dc3f92d8489acc20aa67);
+            
+        
+
+        marker_7f400ae92b6a71ae4cd9464795033198.bindPopup(popup_b1d22e3d9fd30a39696e004a4845da4e)
+        ;
+
+        
+    
+    
+            marker_7f400ae92b6a71ae4cd9464795033198.bindTooltip(
+                `<div>
+                     Grotta di Ngườm Ngao
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7f400ae92b6a71ae4cd9464795033198.setIcon(icon_8a0d3c2f767572c8790c64eb3e094d25);
+            
+    
+            var marker_2091e4d15c9dce50e2b843fcb96e8aba = L.marker(
+                [22.451833, 105.61419],
+                {
+}
+            ).addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            var icon_7e2ef6bd681d91f08fb60b4a53996d1c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bfa44df4a3560a815134057b0f2662bf = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_d80b7b93709ff46976e7f31df8e120c8 = $(`<div id="html_d80b7b93709ff46976e7f31df8e120c8" style="width: 100.0%; height: 100.0%;"><div style='width:270px;font-family:Arial,sans-serif'><h3 style='margin:0 0 6px'>Parco Nazionale di Ba Bể</h3><p>Coordinate GPX: 22.451833, 105.614190</p><a href='https://www.google.com/maps/search/?api=1&query=22.451833,105.61419' target='_blank' rel='noopener'>Apri posizione in Google Maps</a></div></div>`)[0];
+                popup_bfa44df4a3560a815134057b0f2662bf.setContent(html_d80b7b93709ff46976e7f31df8e120c8);
+            
+        
+
+        marker_2091e4d15c9dce50e2b843fcb96e8aba.bindPopup(popup_bfa44df4a3560a815134057b0f2662bf)
+        ;
+
+        
+    
+    
+            marker_2091e4d15c9dce50e2b843fcb96e8aba.bindTooltip(
+                `<div>
+                     Parco Nazionale di Ba Bể
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2091e4d15c9dce50e2b843fcb96e8aba.setIcon(icon_7e2ef6bd681d91f08fb60b4a53996d1c);
+            
+    
+            var marker_6a402b2d53a3b79985b7bea382741ab9 = L.marker(
+                [21.748138, 105.031205],
+                {
+}
+            ).addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            var icon_24f8ccfb5202cc961b0a665971a12288 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c98888b72bf45e5e8312ed27935ea8f2 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_bbd2686680d3e7896ca265b3d8c03af7 = $(`<div id="html_bbd2686680d3e7896ca265b3d8c03af7" style="width: 100.0%; height: 100.0%;"><div style='width:270px;font-family:Arial,sans-serif'><h3 style='margin:0 0 6px'>Lago Thác Bà</h3><p>Coordinate GPX: 21.748138, 105.031205</p><a href='https://www.google.com/maps/search/?api=1&query=21.748138,105.031205' target='_blank' rel='noopener'>Apri posizione in Google Maps</a></div></div>`)[0];
+                popup_c98888b72bf45e5e8312ed27935ea8f2.setContent(html_bbd2686680d3e7896ca265b3d8c03af7);
+            
+        
+
+        marker_6a402b2d53a3b79985b7bea382741ab9.bindPopup(popup_c98888b72bf45e5e8312ed27935ea8f2)
+        ;
+
+        
+    
+    
+            marker_6a402b2d53a3b79985b7bea382741ab9.bindTooltip(
+                `<div>
+                     Lago Thác Bà
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6a402b2d53a3b79985b7bea382741ab9.setIcon(icon_24f8ccfb5202cc961b0a665971a12288);
+            
+    
+            var marker_af7ceecc2306a0b74b094cad948c7d35 = L.marker(
+                [21.821993, 105.003128],
+                {
+}
+            ).addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            var icon_bb25d70d663a938546a67bdf579ce113 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_87eda3db1fdf9d7f026fa5bdb3533a1a = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_c72067ddc7669c152224e80b3d86f82b = $(`<div id="html_c72067ddc7669c152224e80b3d86f82b" style="width: 100.0%; height: 100.0%;"><div style='width:270px;font-family:Arial,sans-serif'><h3 style='margin:0 0 6px'>23 · Vũ Linh</h3><img src='https://image.vietnam.travel/sites/default/files/2023-08/188-Ye%CC%82n%20Ba%CC%81i-namhn1962%40gmail.com-ve%20dep%20thac%20ba_0.jpg?v=1775031521' alt='Vũ Linh' style='width:100%;max-height:150px;object-fit:cover;border-radius:6px;margin:4px 0 6px' onerror="this.style.display='none'"><p style='font-size:11px;color:#666;margin:0 0 6px'>Foto: Vietnam Tourism – lago Thác Bà</p><p style='margin:0 0 8px'>Area rurale sulle rive del lago Thác Bà, nota per gli isolotti, le comunità locali e i soggiorni in homestay. Ideale per una sosta tranquilla prima del rientro verso Hanoi.</p><a href='https://www.google.com/maps/dir/?api=1&amp;destination=Vu+Linh+Yen+Bai+Vietnam' target='_blank' rel='noopener'>Apri indicazioni in Google Maps</a></div></div>`)[0];
+                popup_87eda3db1fdf9d7f026fa5bdb3533a1a.setContent(html_c72067ddc7669c152224e80b3d86f82b);
+            
+        
+
+        marker_af7ceecc2306a0b74b094cad948c7d35.bindPopup(popup_87eda3db1fdf9d7f026fa5bdb3533a1a)
+        ;
+
+        
+    
+    
+            marker_af7ceecc2306a0b74b094cad948c7d35.bindTooltip(
+                `<div>
+                     23 · Vũ Linh
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_af7ceecc2306a0b74b094cad948c7d35.setIcon(icon_bb25d70d663a938546a67bdf579ce113);
+            
+    
+            var marker_3217294587724f4a9245af2eeae6594a = L.marker(
+                [21.31014, 105.400884],
+                {
+}
+            ).addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            var icon_b55ca092fa9d9fc9f88f76c8290c63d4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_00d91502028ac85fba6605a5a6a16621 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_d9ae6d8c543ec7076b05b44372609f78 = $(`<div id="html_d9ae6d8c543ec7076b05b44372609f78" style="width: 100.0%; height: 100.0%;"><div style='width:270px;font-family:Arial,sans-serif'><h3 style='margin:0 0 6px'>24 · Việt Trì</h3><img src='https://vstatic.vietnam.vn/vietnam/resource/IMAGE/2025/3/29/b5e8c4f308a04aff9423d62c27a0913a' alt='Việt Trì' style='width:100%;max-height:150px;object-fit:cover;border-radius:6px;margin:4px 0 6px' onerror="this.style.display='none'"><p style='font-size:11px;color:#666;margin:0 0 6px'>Foto: Vietnam.vn</p><p style='margin:0 0 8px'>Città sul fiume Rosso e punto di passaggio nella tappa finale verso Hanoi. Utile come riferimento per una pausa prima dell&#x27;ultimo tratto.</p><a href='https://www.google.com/maps/dir/?api=1&amp;destination=Viet+Tri+Phu+Tho+Vietnam' target='_blank' rel='noopener'>Apri indicazioni in Google Maps</a></div></div>`)[0];
+                popup_00d91502028ac85fba6605a5a6a16621.setContent(html_d9ae6d8c543ec7076b05b44372609f78);
+            
+        
+
+        marker_3217294587724f4a9245af2eeae6594a.bindPopup(popup_00d91502028ac85fba6605a5a6a16621)
+        ;
+
+        
+    
+    
+            marker_3217294587724f4a9245af2eeae6594a.bindTooltip(
+                `<div>
+                     24 · Việt Trì
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3217294587724f4a9245af2eeae6594a.setIcon(icon_b55ca092fa9d9fc9f88f76c8290c63d4);
+            
+    
+            var marker_9056a663ec4ca54ab987fc9cdcdda6e0 = L.marker(
+                [21.029254, 105.839629],
+                {
+}
+            ).addTo(map_87c003a381fe8b97e5a075d8d42abce0);
+        
+    
+            var icon_5755342172c004a3128df6da179968c8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bf2b8ae2d5133c9a7ef49f58f4de27f6 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_d37873e5d0866b302bb1a2bd2041eb4b = $(`<div id="html_d37873e5d0866b302bb1a2bd2041eb4b" style="width: 100.0%; height: 100.0%;"><div style='width:270px;font-family:Arial,sans-serif'><h3 style='margin:0 0 6px'>Hanoi · fine tour</h3><p>Coordinate GPX: 21.029254, 105.839629</p><a href='https://www.google.com/maps/search/?api=1&query=21.029254,105.839629' target='_blank' rel='noopener'>Apri posizione in Google Maps</a></div></div>`)[0];
+                popup_bf2b8ae2d5133c9a7ef49f58f4de27f6.setContent(html_d37873e5d0866b302bb1a2bd2041eb4b);
+            
+        
+
+        marker_9056a663ec4ca54ab987fc9cdcdda6e0.bindPopup(popup_bf2b8ae2d5133c9a7ef49f58f4de27f6)
+        ;
+
+        
+    
+    
+            marker_9056a663ec4ca54ab987fc9cdcdda6e0.bindTooltip(
+                `<div>
+                     Hanoi · fine tour
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9056a663ec4ca54ab987fc9cdcdda6e0.setIcon(icon_5755342172c004a3128df6da179968c8);
+            
+    
+            map_87c003a381fe8b97e5a075d8d42abce0.fitBounds(
+                [[21.006119, 105.831748], [22.492232, 103.946254], [22.335446, 103.841058], [22.537291, 104.291745], [22.484981, 104.363811], [22.485036, 104.389105], [22.827766, 104.983913], [23.117563, 105.143492], [23.278002, 105.362763], [23.242046, 105.400183], [23.101126, 105.42163], [22.954145, 105.681266], [22.9234602, 105.7784865], [22.667846, 106.239449], [22.841973, 106.646764], [22.850996, 106.728054], [22.846443, 106.705576], [22.844213, 106.653713], [22.687622, 106.440116], [22.664242, 106.071281], [22.484499, 105.664831], [22.451833, 105.61419], [22.131762, 105.27254], [22.057602, 105.225461], [21.942117, 105.224438], [21.855699, 105.188377], [21.800046, 105.165775], [21.748138, 105.031205], [21.821993, 105.003128], [21.31014, 105.400884], [21.029254, 105.839629]],
+                {}
+            );
+        
+</script>
+</html>
